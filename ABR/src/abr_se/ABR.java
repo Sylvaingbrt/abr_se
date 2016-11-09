@@ -41,7 +41,7 @@ public class ABR extends java.lang.Object{
 	}
 	
 	public void toList(java.util.List<java.lang.Integer> l){
-		
+		addToList(this.root, l);
 	}
 	
 	
@@ -108,6 +108,31 @@ public class ABR extends java.lang.Object{
 		}
 		
 		return node;
+	}
+	
+	private void addToList(ABRNode node, java.util.List<java.lang.Integer> l){
+		int i = 0;
+		if(l.isEmpty()){
+			l.add(node.value);
+		}
+		else{
+			if(node.value>=l.get(l.size()-1)){
+				l.add(node.value);
+			}
+			else{
+				while(node.value >= l.get(i)){
+					i++;
+				}
+				l.add(i, node.value);
+			}
+		}
+		if(node.leftChild != null){
+			addToList(node.leftChild, l);
+		}
+		if(node.rightChild != null){
+			addToList(node.rightChild, l);
+		}
+		
 	}
 	
 	

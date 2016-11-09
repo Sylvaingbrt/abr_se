@@ -1,6 +1,10 @@
 package abr_se;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 public class ABRtests {
@@ -32,5 +36,22 @@ public class ABRtests {
 		assertTrue(tree.contains(9));
 		assertTrue(tree.contains(5));
 	}
+	
+	@Test
+	public void testFillList() {
+		ABR tree = new ABR();
+		List<Integer> L = new ArrayList<Integer>();;
+		List<Integer> M= new ArrayList<Integer>();;
+		tree.insert(8);
+		tree.insert(9);
+		tree.insert(5);
+		tree.toList(L);
+		M.add(5);
+		M.add(8);
+		M.add(9);
+		System.out.println(L);
+		assertEquals(L, M);
+	}
+	
 
 }

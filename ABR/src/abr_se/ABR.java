@@ -1,13 +1,10 @@
 package abr_se;
 
-import java.util.ArrayList;
-
 public class ABR extends java.lang.Object{
 	
 	
 	private int nbElements; // number of elements in the abr
 	private ABRNode root; /// root node of the ABR
-	private ArrayList<Object> Liste = new ArrayList<Object>() ;
 	
 	
 	/** A node in the ABR
@@ -42,7 +39,6 @@ public class ABR extends java.lang.Object{
 	
 	public ABR(){
 		this.nbElements=0;
-		this.Liste=null;
 		this.root=null;
 	}
 	
@@ -50,7 +46,14 @@ public class ABR extends java.lang.Object{
 		this.nbElements++;
 		if(root==null) 
 			root = new ABRNode(0, value);
-		this.Liste.add(value);
+		ABRNode node = getParent(value);
+		if(node.diff(value)<0) {
+			assert(node.leftChild==null);
+			node.leftChild = new ABRNode((node.pos+1), value);
+		} else {
+			assert(node.rightChild==null);
+			node.rightChild = new ABRNode((node.pos+1), value);
+		}
 		
 	}
 	
@@ -63,7 +66,7 @@ public class ABR extends java.lang.Object{
 		return this.nbElements;
 	}
 	
-	ABRNode getParent(int value) {
+	private ABRNode getParent(int value) {
 		
 		ABRNode next = root, node = null;
 

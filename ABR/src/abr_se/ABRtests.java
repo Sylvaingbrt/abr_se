@@ -23,6 +23,11 @@ public class ABRtests {
 		assertTrue(tree.nbElement()==1);
 		tree.insert(9);
 		assertEquals(tree.nbElement(),2);
+		tree.insert(4);
+		tree.insert(7);
+		tree.insert(6);
+		tree.insert(10);
+		
 	}
 	
 	
@@ -44,11 +49,19 @@ public class ABRtests {
 		List<Integer> M= new ArrayList<Integer>();;
 		tree.insert(8);
 		tree.insert(9);
+		tree.insert(20);
+		tree.insert(4);
+		tree.insert(50);
+		tree.insert(1);
 		tree.insert(5);
 		tree.toList(L);
+		M.add(1);
+		M.add(4);
 		M.add(5);
 		M.add(8);
 		M.add(9);
+		M.add(20);
+		M.add(50);
 		System.out.println(L);
 		assertEquals(L, M);
 	}

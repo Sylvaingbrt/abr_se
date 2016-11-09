@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ABRtests {
 
 	@Test
-	public void testIsEmpty() {
+	public void testEmpty() {
 		ABR emptyTree = new ABR();
 		assertTrue(emptyTree.isEmpty());
 	}
@@ -16,17 +16,21 @@ public class ABRtests {
 		ABR tree = new ABR();
 		tree.insert(8);
 		assertFalse(tree.isEmpty());
+		assertTrue(tree.nbElement()==1);
+		tree.insert(9);
+		assertEquals(tree.nbElement(),2);
 	}
 	
 	
 	@Test
-	public void testNbElement() {
+	public void testContains() {
 		ABR tree = new ABR();
-		assertTrue(tree.nbElement()==0);
 		tree.insert(8);
-		assertTrue(tree.nbElement()==1);
 		tree.insert(9);
-		assertEquals(tree.nbElement(),2);
+		tree.insert(5);
+		assertTrue(tree.contains(8));
+		assertTrue(tree.contains(9));
+		assertTrue(tree.contains(5));
 	}
 
 }

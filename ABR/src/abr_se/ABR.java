@@ -6,37 +6,6 @@ public class ABR extends java.lang.Object{
 	private int nbElements; // number of elements in the abr
 	private ABRNode root; /// root node of the ABR
 	
-	
-	/** A node in the ABR
-	 */
-	private class ABRNode 
-	{
-		ABRNode leftChild, rightChild;
-		int pos;
-		int value;
-		
-		ABRNode(int p, int value){
-			this.pos = p;
-			this.value = value;
-			this.leftChild = null;
-			this.rightChild = null;
-		}
-
-		ABRNode(int p, int value, ABRNode lChild, ABRNode rChild){
-			this.pos = p;
-			this.value = value;
-			this.leftChild = lChild;
-			this.rightChild = rChild;
-		}
-		
-		int diff(int value) { 
-			return value-this.value;
-		}
-	}
-	
-	
-	
-	
 	public ABR(){
 		this.nbElements=0;
 		this.root=null;
@@ -66,6 +35,65 @@ public class ABR extends java.lang.Object{
 		return this.nbElements;
 	}
 	
+	public boolean contains(int value){
+		ABRNode node = this.root;
+		return isInside(node, value);
+	}
+	
+	public void toList(java.util.List<java.lang.Integer> l){
+		
+	}
+	
+	
+	
+	//Ce qui suit est la liste des fonctions "privates" dont je me suis servi pour faire marcher les 
+	//fonctions précédentes
+	
+	
+	
+	/** A node in the ABR
+	 */
+	private class ABRNode 
+	{
+		ABRNode leftChild, rightChild;
+		int pos;
+		int value;
+		
+		ABRNode(int p, int value){
+			this.pos = p;
+			this.value = value;
+			this.leftChild = null;
+			this.rightChild = null;
+		}
+
+		ABRNode(int p, int value, ABRNode lChild, ABRNode rChild){
+			this.pos = p;
+			this.value = value;
+			this.leftChild = lChild;
+			this.rightChild = rChild;
+		}
+		
+		int diff(int value) { 
+			return value-this.value;
+		}
+	}
+	
+
+	private boolean isInside(ABRNode node, int value){
+		if (node == null){
+			return false;
+		}
+		if(node.value==value){
+			return true;
+		}
+		if(node.diff(value)<0){
+			return isInside(node.leftChild, value);
+		}
+		else{
+			return isInside(node.rightChild, value);
+		}
+	}
+	
 	private ABRNode getParent(int value) {
 		
 		ABRNode next = root, node = null;
@@ -81,5 +109,8 @@ public class ABR extends java.lang.Object{
 		
 		return node;
 	}
+	
+	
+	
 
 }

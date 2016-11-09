@@ -12,16 +12,21 @@ public class ABR extends java.lang.Object{
 	}
 	
 	public void insert(int value){
-		this.nbElements++;
-		if(root==null) 
-			root = new ABRNode(0, value);
-		ABRNode node = getParent(value);
-		if(node.diff(value)<0) {
-			assert(node.leftChild==null);
-			node.leftChild = new ABRNode((node.pos+1), value);
-		} else {
-			assert(node.rightChild==null);
-			node.rightChild = new ABRNode((node.pos+1), value);
+		if(this.contains(value)){
+			
+		}
+		else{
+			this.nbElements++;
+			if(root==null) 
+				root = new ABRNode(0, value);
+			ABRNode node = getParent(value);
+			if(node.diff(value)<0) {
+				assert(node.leftChild==null);
+				node.leftChild = new ABRNode((node.pos+1), value);
+			} else if (node.diff(value)>0){
+				assert(node.rightChild==null);
+				node.rightChild = new ABRNode((node.pos+1), value);
+			}
 		}
 		
 	}
